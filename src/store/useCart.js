@@ -22,7 +22,7 @@ export const useCartStore = defineStore('cart', {
             this.cartListItem = JSON.parse(JSON.stringify(result.data.record.cart))
             
         } catch (error) {
-            console.log(error)
+            console.log(error.message)
         }
 
     },
@@ -45,7 +45,6 @@ export const useCartStore = defineStore('cart', {
         }
       } else {
         this.error = "This products already exist in cart!"
-        console.log(this.error)
       }
 
     },
@@ -61,7 +60,7 @@ export const useCartStore = defineStore('cart', {
             await this.getCart()
             
         } catch (error) {
-            console.log(error)
+            console.log(error.message)
         }
     },
     async updateCart(data) {
@@ -76,7 +75,7 @@ export const useCartStore = defineStore('cart', {
           await this.getCart()
           
       } catch (error) {
-          console.log(error)
+          console.log(error.message)
       }
     }
   }
