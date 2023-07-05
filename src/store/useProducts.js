@@ -20,18 +20,9 @@ export const useProductsStore = defineStore('products', {
         this.productsList = res.data.record.products
         
       } catch (error) {
-        console.log(error)
+        console.log(error.message)
       }
 
-    },
-    async getProductById(id) {
-      try {
-        const data = await axios.get(`${this.baseUrl}/products/${id}`)
-        this.productsDetail = data
-        
-      } catch (error) {
-        console.log(error)
-      }
     },
   }
 })

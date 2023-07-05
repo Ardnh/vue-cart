@@ -10,7 +10,7 @@
           <li><router-link to="/carts">Carts</router-link></li>
         </ul>
       </div>
-      <a class="btn btn-ghost normal-case text-xl">daisyUI</a>
+      <a class="btn btn-ghost normal-case text-xl text-white">daisyUI</a>
     </div>
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-1 text-white font-bold text-xl">
@@ -28,5 +28,4 @@
 <script setup>
 import { useCartStore } from '../../store/useCart'
 const store = useCartStore()
-console.log(store.getCartLength)
 </script>
