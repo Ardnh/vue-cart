@@ -4,7 +4,7 @@
         <span class="loading loading-ring loading-lg"></span>
         <p class="mx-3 text-xl">Loading product...</p> 
     </div>
-    <div v-else class="flex bg-slate-400 flex-wrap justify-center w-full">
+    <div v-else class="flex flex-wrap justify-center w-full">
         <ProductCard :products="productsStore.getProductsList"></ProductCard>
     </div>
 </template>
