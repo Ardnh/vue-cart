@@ -25,7 +25,7 @@
     </div>
 </div>
 </template>
-<script setup>
-import { useCartStore } from '../../store/useCart'
-const store = useCartStore()
+<script setup lang="ts">
+import { useCartsStore } from '../../store/useCarts'
+const store = useCartsStore()
 </script>

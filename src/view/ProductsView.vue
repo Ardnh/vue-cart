@@ -8,21 +8,20 @@
         <ProductCard :products="productsStore.getProductsList"></ProductCard>
     </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { useProductsStore } from '../store/useProducts'
-import { useCartStore } from "../store/useCart"
+import { useCartsStore } from "../store/useCarts"
 import ProductCard from '../components/products/ProductCard.vue';
 
 const productsStore = useProductsStore()
-const cartStore = useCartStore()
+const cartStore = useCartsStore()
 
 const isLoading =  ref(false)
 
-
 onMounted(async () => {
     isLoading.value = true
-    Promise.all([productsStore.getProducts(), cartStore.getCart()])
+    Promise.all([productsStore.getAllProducts(), cartStore.getCart()])
         .then(() => isLoading.value = false)
         .catch(() => isLoading.value = false)
 })

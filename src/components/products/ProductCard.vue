@@ -20,30 +20,31 @@
     </dialog>
 
 </template>
-<script setup>
+<script setup lang="ts">
 import { computed, ref, reactive } from "vue";
-import { useCartStore } from "../../store/useCart"
-import DetailProduct from "./DetailProduct.vue"
+import { useCartsStore } from "../../store/useCarts"
+import DetailProduct from "./DetailProducts.vue"
+import { Products } from "../../model/products";
+import { Cart } from "../../model/carts";
 const props = defineProps(["products"])
-const cartStore = useCartStore()
-const isLoading = ref(false)
+const cartStore = useCartsStore()
+const isLoading = ref<boolean>(false)
 const isProductExist = reactive({
     status: false,
     message: ""
 })
-const showModal = ref(false)
-const selectedProduct = ref(null)
+const showModal = ref<boolean>(false)
+const selectedProduct = ref<Products | null>(null)
 
 const closeModal = () => {
-    console.log("close modal run")
     showModal.value = false
     isProductExist.status = false
     isProductExist.message = ""
 }
 
-const showDetailProduct = (data) => {
+const showDetailProduct = (data: Products) => {
 
-    let product = cartStore.getCartList.find(item => item.id === data.id)
+    let product = cartStore.getCartList?.find(item => item.id === data.id)
 
     if (product) {
         isProductExist.status = true
@@ -54,11 +55,11 @@ const showDetailProduct = (data) => {
     selectedProduct.value = data
 }
 
-const addToCart = async (data, quantity) => {
+const addToCart = async (data: Products, quantity:number) => {
 
     isLoading.value = true
 
-    const cartItem = {
+    const cartItem: Cart = {
         id : data.id,
         title: data.title,
         price: data.price,
@@ -71,6 +72,7 @@ const addToCart = async (data, quantity) => {
     showModal.value = false
     isProductExist.status = false
     isProductExist.message = ""
+    selectedProduct.value = null
 }
 
 const productsList = computed(() => {

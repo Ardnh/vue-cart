@@ -5,27 +5,20 @@
         <p class="mx-3 text-xl">Loading cart...</p> 
     </div>
     <div v-else class="flex flex-wrap justify-center">
-        <CartItem :is-delete-loading="isDeleteLoading" :carts="store.getCartList" @updated-cart="updateCart" @delete-cart="deleteCart"/>
+        <CartItem :carts="store.getCartList" @updated-cart="updateCart"/>
     </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { onMounted, ref } from "vue";
-import CartItem from "../components/carts/CartItem.vue";
-import { useCartStore } from "../store/useCart"
-const store =  useCartStore()
+import CartItem from "../components/cart/CartItem.vue";
+import { useCartsStore } from "../store/useCarts"
+import { Cart } from "../model/carts";
+const store = useCartsStore()
 
 const isLoading = ref(false)
-const isDeleteLoading = ref(false)
 
-const updateCart = (data) => {
+const updateCart = (data: Cart[]) => {
     store.updateCart(data)
-}
-
-const deleteCart = async (id) => {
-    isDeleteLoading.value = true
-    await store.removeCart(id)
-        .then(() => isDeleteLoading.value = false)
-        .catch(() => isDeleteLoading.value = false)
 }
 
 onMounted(async () => {
@@ -34,5 +27,4 @@ onMounted(async () => {
         .then(() => isLoading.value = false)
         .catch(() => isLoading.value = false)
 })
-
 </script>

@@ -21,19 +21,19 @@
                 </div>
             </div>
         </div>
-            <div class="modal-action">
-                <button :disabled="props.isProductExist.status" @click="$emit('addToCart', productItem, quantity)" class="btn bg-violet-700 text-white">
-                    <span v-if="props.isLoading" class="loading loading-spinner"></span>
-                    Add to cart
-                </button>
-                <button @click="$emit('closeModal')" class="btn">Close</button>
-            </div>
+        <div class="modal-action">
+            <button :disabled="props.isProductExist.status" @click="$emit('addToCart', productItem, quantity)" class="btn bg-violet-700 text-white">
+                <span v-if="props.isLoading" class="loading loading-spinner"></span>
+                Add to cart
+            </button>
+            <button @click="$emit('closeModal')" class="btn">Close</button>
         </div>
+    </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { computed, ref } from 'vue';
 const props = defineProps(["product", "isLoading", "isProductExist"])
-const emit = defineEmits(["closeModal", "addToCart"])
+defineEmits(["closeModal", "addToCart"])
 const quantity = ref(1)
 
 const productItem = computed(() => {

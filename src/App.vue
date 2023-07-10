@@ -1,15 +1,8 @@
 <template>
-  <Layout>
+  <MainLayout>
     <router-view></router-view>
-  </Layout>
+  </MainLayout>
 </template>
-<script setup>
-import { onMounted } from 'vue';
-import Layout from './layout/Layout.vue'
-import { useCartStore } from './store/useCart'
-const store = useCartStore()
-
-onMounted(() => {
-  store.getCart()
-})
+<script setup lang="ts">
+import MainLayout from "./layout/MainLayout.vue"
 </script>
